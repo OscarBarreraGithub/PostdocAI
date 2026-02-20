@@ -39,10 +39,18 @@ fi
 
 install_cask_if_missing() {
   local cask_name="$1"
+  local app_path="${2:-}"
+
   if brew list --cask "$cask_name" >/dev/null 2>&1; then
     log "$cask_name already installed."
     return
   fi
+
+  if [ -n "$app_path" ] && [ -d "$app_path" ]; then
+    log "$cask_name app bundle already exists at $app_path; skipping cask install."
+    return
+  fi
+
   log "Installing $cask_name..."
   brew install --cask "$cask_name"
 }
@@ -58,8 +66,8 @@ install_formula_if_missing() {
 }
 
 install_formula_if_missing git
-install_cask_if_missing docker
-install_cask_if_missing visual-studio-code
+install_cask_if_missing docker "/Applications/Docker.app"
+install_cask_if_missing visual-studio-code "/Applications/Visual Studio Code.app"
 
 if ! command -v docker >/dev/null 2>&1 && [ -x /Applications/Docker.app/Contents/Resources/bin/docker ]; then
   export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
