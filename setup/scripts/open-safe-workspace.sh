@@ -17,6 +17,15 @@ fail_with_note() {
   exit 1
 }
 
+open_in_container_uri() {
+  local workspace_basename repo_root_hex remote_uri
+  workspace_basename="$(basename "$repo_root")"
+  repo_root_hex="$(printf '%s' "$repo_root" | xxd -p | tr -d '\n')"
+  remote_uri="vscode-remote://dev-container+$repo_root_hex/workspaces/$workspace_basename"
+  log "Opening VS Code directly in dev container via remote URI..."
+  exec code --folder-uri "$remote_uri"
+}
+
 if ! command -v docker >/dev/null 2>&1 && [ -x /Applications/Docker.app/Contents/Resources/bin/docker ]; then
   export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
 fi
@@ -89,6 +98,8 @@ else
   devcontainer up "$repo_root"
 fi
 
-log "Opening VS Code on workspace path..."
-log "If VS Code does not auto-attach, run: Dev Containers: Reopen in Container"
-exec code "$repo_root"
+if command -v xxd >/dev/null 2>&1; then
+  open_in_container_uri
+fi
+
+fail_with_note "Cannot build VS Code remote container URI because 'xxd' is missing."
