@@ -7,7 +7,7 @@ Goal: a user can launch from a desktop icon and always enter the same safer cont
 
 ```bash
 git clone <your-repo-url>
-cd GPD
+cd PostdocAI
 ./bootstrap.sh
 ```
 
@@ -18,13 +18,13 @@ It also removes local host installs of Codex/Claude VS Code extensions.
 
 Desktop icon created:
 
-`~/Desktop/Open GPD Safe.command`
+`~/Desktop/Open PostdocAI Safe.command`
 
 After first setup, users can just double-click that icon.
 
 ## Daily Use
 
-1. Double-click `Open GPD Safe.command` on Desktop.
+1. Double-click `Open PostdocAI Safe.command` on Desktop.
 2. VS Code opens directly in the dev container for this repo.
 
 No manual `Reopen in Container` step is required.

@@ -7,8 +7,8 @@ if [ "$(uname -s)" != "Darwin" ]; then
 fi
 
 zshrc_path="$HOME/.zshrc"
-marker_start="# >>> GPD SAFE AGENT GUARD >>>"
-marker_end="# <<< GPD SAFE AGENT GUARD <<<"
+marker_start="# >>> POSTDOCAI SAFE AGENT GUARD >>>"
+marker_end="# <<< POSTDOCAI SAFE AGENT GUARD <<<"
 tmp_file="$(mktemp)"
 
 if [ -f "$zshrc_path" ]; then
@@ -22,11 +22,11 @@ else
 fi
 
 cat >> "$tmp_file" <<'EOF'
-# >>> GPD SAFE AGENT GUARD >>>
+# >>> POSTDOCAI SAFE AGENT GUARD >>>
 _gpd_require_devcontainer() {
   if [ ! -f "/.dockerenv" ]; then
     echo "ERROR: codex/claude are blocked outside the dev container."
-    echo "Use the desktop launcher: Open GPD Safe.command"
+    echo "Use the desktop launcher: Open PostdocAI Safe.command"
     return 1
   fi
 }
@@ -64,7 +64,7 @@ claude() {
   done
   command claude --sandbox workspace-write "$@"
 }
-# <<< GPD SAFE AGENT GUARD <<<
+# <<< POSTDOCAI SAFE AGENT GUARD <<<
 EOF
 
 mv "$tmp_file" "$zshrc_path"

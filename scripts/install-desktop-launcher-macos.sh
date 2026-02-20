@@ -7,7 +7,7 @@ if [ "$(uname -s)" != "Darwin" ]; then
 fi
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-launcher_path="$HOME/Desktop/Open GPD Safe.command"
+launcher_path="$HOME/Desktop/Open PostdocAI Safe.command"
 
 cat > "$launcher_path" <<EOF
 #!/usr/bin/env bash
