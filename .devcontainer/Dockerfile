@@ -6,6 +6,9 @@ RUN apt-get update \
         ghostscript \
         latexmk \
         make \
+        python3 \
+        python3-pip \
+        python3-venv \
         texlive-bibtex-extra \
         texlive-fonts-recommended \
         texlive-lang-english \

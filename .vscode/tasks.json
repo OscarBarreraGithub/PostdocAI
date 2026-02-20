@@ -19,6 +19,33 @@
       "type": "shell",
       "command": "make -C setup clean",
       "problemMatcher": []
+    },
+    {
+      "label": "PPTX: create demo",
+      "type": "shell",
+      "command": "make -C setup demo-pptx",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "PPTX: render equation",
+      "type": "shell",
+      "command": "make -C setup render-equation EQN=\"${input:equation}\" OUT=\"${input:outputPng}\"",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "equation",
+      "type": "promptString",
+      "description": "LaTeX equation string (no $ delimiters)",
+      "default": "E = mc^2"
+    },
+    {
+      "id": "outputPng",
+      "type": "promptString",
+      "description": "Output PNG file path",
+      "default": "/tmp/equation.png"
     }
   ]
 }

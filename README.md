@@ -105,6 +105,35 @@ Sanity check:
 - Live rebuild: `make -C setup watch`
 - Clean: `make -C setup clean`
 
+## PowerPoint Editing
+
+The container includes Python 3 with python-pptx for programmatic PowerPoint editing.
+Helper scripts live in `setup/pptx/`. Style preferences and workflow are in `CLAUDE.md`.
+
+### Quick Start
+
+```bash
+# Generate a demo presentation in work/presentations/
+make -C setup demo-pptx
+
+# Render a LaTeX equation to PNG
+python3 setup/pptx/render_equation.py "E = mc^2" /tmp/equation.png
+```
+
+### Workflow
+
+1. Drop a `.pptx` into `work/presentations/`.
+2. Tell Claude Code what to fix (the `CLAUDE.md` provides style defaults).
+3. Claude edits the file in-place. Use `git add -f` to version-control it.
+
+### Equation Rendering
+
+Mathematical equations are rendered as high-quality LaTeX images:
+
+1. LaTeX string → pdflatex → tightly-cropped PDF
+2. PDF → ghostscript → transparent PNG (300 DPI)
+3. PNG inserted into slide via python-pptx
+
 ## Security Scope
 
 - Agents can modify files in this repo (expected).

@@ -5,6 +5,15 @@ setup/build/
 # User workspace (keep folder scaffold only)
 work/*
 !work/.gitkeep
+!work/presentations/
+work/presentations/*
+!work/presentations/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
 
 # OS files
 .DS_Store
