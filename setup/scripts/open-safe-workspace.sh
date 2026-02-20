@@ -65,8 +65,22 @@ if [ "$docker_ready" -ne 1 ]; then
   fail_with_note "Docker did not become ready. Open Docker Desktop and retry."
 fi
 
-log "Opening workspace directly in dev container..."
-if devcontainer open --help 2>&1 | grep -q -- "--workspace-folder"; then
-  exec devcontainer open --workspace-folder "$repo_root"
+if devcontainer open --help >/dev/null 2>&1; then
+  log "Opening workspace directly in dev container..."
+  if devcontainer open --help 2>&1 | grep -q -- "--workspace-folder"; then
+    exec devcontainer open --workspace-folder "$repo_root"
+  fi
+  exec devcontainer open "$repo_root"
 fi
-exec devcontainer open "$repo_root"
+
+log "This devcontainer CLI build does not support 'open'."
+log "Preparing the container with 'devcontainer up'..."
+if devcontainer up --help 2>&1 | grep -q -- "--workspace-folder"; then
+  devcontainer up --workspace-folder "$repo_root"
+else
+  devcontainer up "$repo_root"
+fi
+
+log "Opening VS Code on workspace path..."
+log "If VS Code does not auto-attach, run: Dev Containers: Reopen in Container"
+exec code "$repo_root"

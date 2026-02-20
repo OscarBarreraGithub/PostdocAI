@@ -26,7 +26,7 @@ cat >> "$tmp_file" <<'EOF'
 _pocketpostdoc_require_devcontainer() {
   if [ ! -f "/.dockerenv" ]; then
     echo "ERROR: codex/claude are blocked outside the dev container."
-    echo "Use the desktop launcher: Open PocketPostdoc Safe.command"
+    echo "Use the desktop launcher: Open PocketPostdoc Safe.app"
     return 1
   fi
 }

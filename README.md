@@ -24,24 +24,37 @@ cd PocketPostdoc
 ```
 
 `./bootstrap.sh` delegates to `./setup/bootstrap.sh`.
-It installs dependencies, creates a desktop launcher icon, and opens this repo directly in the dev container.
+It installs dependencies, creates desktop launchers, and opens this repo directly in the dev container.
 If Xcode Command Line Tools are missing, macOS will prompt once; rerun `./bootstrap.sh` after that install completes.
 It also installs zsh command guards so `codex` and `claude` fail outside a dev container.
 It also removes local host installs of Codex/Claude VS Code extensions.
 
-Desktop icon created:
+Desktop launchers created:
 
-`~/Desktop/Open PocketPostdoc Safe.command`
+`~/Desktop/Open PocketPostdoc Safe.app` (preferred)
+
+`~/Desktop/Open PocketPostdoc Safe.command` (fallback/debug)
+
+App icon source path:
+
+`setup/assets/icons/appicon.png`
 
 After first setup, users can just double-click that icon.
 
 ## Daily Use
 
-1. Double-click `Open PocketPostdoc Safe.command` on Desktop.
+1. Double-click `Open PocketPostdoc Safe.app` on Desktop.
 2. VS Code opens directly in the dev container for this repo.
 3. Create/open your projects inside `work/`.
 
 No manual `Reopen in Container` step is required.
+
+If the launcher only opens Docker Desktop and not VS Code:
+
+```bash
+bash ./setup/scripts/install-desktop-launcher-macos.sh
+bash ./setup/scripts/open-safe-workspace.sh
+```
 
 ## Updating an Existing Clone
 

@@ -97,7 +97,7 @@ if ! command -v devcontainer >/dev/null 2>&1; then
   fi
 fi
 
-log "Creating desktop launcher icon..."
+log "Creating desktop launchers..."
 bash "$repo_root/setup/scripts/install-desktop-launcher-macos.sh"
 
 log "Installing shell command guards..."
