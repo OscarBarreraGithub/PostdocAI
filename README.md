@@ -18,7 +18,7 @@ PocketPostdoc/
 ## First-Time Setup (once per machine)
 
 ```bash
-git clone <your-repo-url>
+git clone git@github.com:OscarBarreraGithub/PocketPostdoc.git
 cd PocketPostdoc
 ./bootstrap.sh
 ```
