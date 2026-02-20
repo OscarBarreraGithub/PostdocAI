@@ -65,12 +65,20 @@ if [ "$docker_ready" -ne 1 ]; then
   fail_with_note "Docker did not become ready. Open Docker Desktop and retry."
 fi
 
-if devcontainer open --help >/dev/null 2>&1; then
+devcontainer_help="$(devcontainer --help 2>&1 || true)"
+
+if printf "%s\n" "$devcontainer_help" | grep -Eq '^[[:space:]]*devcontainer open([[:space:]]|$)'; then
   log "Opening workspace directly in dev container..."
   if devcontainer open --help 2>&1 | grep -q -- "--workspace-folder"; then
-    exec devcontainer open --workspace-folder "$repo_root"
+    if devcontainer open --workspace-folder "$repo_root"; then
+      exit 0
+    fi
+  else
+    if devcontainer open "$repo_root"; then
+      exit 0
+    fi
   fi
-  exec devcontainer open "$repo_root"
+  log "devcontainer open failed; falling back to 'devcontainer up'."
 fi
 
 log "This devcontainer CLI build does not support 'open'."
