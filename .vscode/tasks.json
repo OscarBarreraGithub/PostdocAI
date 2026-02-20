@@ -1,0 +1,24 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "LaTeX: build",
+      "type": "shell",
+      "command": "make pdf",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "LaTeX: watch",
+      "type": "shell",
+      "command": "make watch",
+      "problemMatcher": []
+    },
+    {
+      "label": "LaTeX: clean",
+      "type": "shell",
+      "command": "make clean",
+      "problemMatcher": []
+    }
+  ]
+}

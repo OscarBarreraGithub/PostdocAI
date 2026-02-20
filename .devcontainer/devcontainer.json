@@ -1,0 +1,39 @@
+{
+  "name": "gpd-safe-latex",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "runArgs": [
+    "--init",
+    "--cap-drop=ALL",
+    "--security-opt=no-new-privileges:true"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "James-Yu.latex-workshop",
+        "openai.chatgpt",
+        "anthropic.claude-code"
+      ],
+      "settings": {
+        "terminal.integrated.cwd": "${workspaceFolder}",
+        "latex-workshop.latex.autoBuild.run": "never",
+        "latex-workshop.view.pdf.viewer": "tab",
+        "remote.extensionKind": {
+          "openai.chatgpt": [
+            "workspace"
+          ],
+          "anthropic.claude-code": [
+            "workspace"
+          ]
+        }
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
+}

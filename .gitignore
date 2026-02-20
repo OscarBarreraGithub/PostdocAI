@@ -1,0 +1,18 @@
+# Build artifacts
+build/
+
+# OS files
+.DS_Store
+
+# LaTeX intermediates
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
