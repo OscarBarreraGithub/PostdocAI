@@ -8,6 +8,9 @@ work/*
 !work/presentations/
 work/presentations/*
 !work/presentations/.gitkeep
+!work/papers/
+work/papers/*
+!work/papers/.gitkeep
 
 # Python
 __pycache__/

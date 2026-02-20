@@ -5,7 +5,7 @@ Usage:
     python3 render_equation.py "E = mc^2" output.png [--dpi 300]
 
 Pipeline:
-    1. Substitutes equation into setup/pptx/equation_template.tex
+    1. Substitutes equation into examples/pptx-editor/equation_template.tex
     2. Runs pdflatex to produce a tightly-cropped PDF (standalone class)
     3. Runs ghostscript to convert PDF -> transparent PNG at specified DPI
 """

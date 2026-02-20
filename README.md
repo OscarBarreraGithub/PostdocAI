@@ -9,8 +9,13 @@ Goal: launch from a desktop icon and always enter the same safer containerized w
 PocketPostdoc/
   .devcontainer/   # Container definition (kept at repo root)
   .vscode/         # Workspace settings/tasks
+  examples/        # Claude Code example workflows
+    pptx-editor/   # PowerPoint editor with LaTeX equations
+    latex-assistant/  # Physics/math double-checker
   setup/           # Setup scripts and starter LaTeX files
   work/            # Your actual project folders (starts empty)
+    presentations/ # Drop .pptx files here
+    papers/        # Drop .tex files here
 ```
 
 `work/` is intentionally empty at start (tracked with `.gitkeep` only).
@@ -105,34 +110,39 @@ Sanity check:
 - Live rebuild: `make -C setup watch`
 - Clean: `make -C setup clean`
 
-## PowerPoint Editing
+## Examples
 
-The container includes Python 3 with python-pptx for programmatic PowerPoint editing.
-Helper scripts live in `setup/pptx/`. Style preferences and workflow are in `CLAUDE.md`.
+The `examples/` directory contains Claude Code example workflows.
+Each example has its own `CLAUDE.md` with agent instructions.
 
-### Quick Start
+### PowerPoint Editor (`examples/pptx-editor/`)
+
+Edit `.pptx` presentations with LaTeX equation rendering.
 
 ```bash
-# Generate a demo presentation in work/presentations/
-make -C setup demo-pptx
+# Generate a demo presentation
+make -C examples/pptx-editor demo-pptx
 
 # Render a LaTeX equation to PNG
-python3 setup/pptx/render_equation.py "E = mc^2" /tmp/equation.png
+python3 examples/pptx-editor/render_equation.py "E = mc^2" /tmp/equation.png
 ```
 
-### Workflow
+Workflow: drop a `.pptx` into `work/presentations/`, tell Claude to edit it.
+Equations are rendered as transparent PNGs via pdflatex + ghostscript.
 
-1. Drop a `.pptx` into `work/presentations/`.
-2. Tell Claude Code what to fix (the `CLAUDE.md` provides style defaults).
-3. Claude edits the file in-place. Use `git add -f` to version-control it.
+### LaTeX Double-Checker (`examples/latex-assistant/`)
 
-### Equation Rendering
+A physics/math error checker that reads `.tex` papers and only flags mistakes it is certain about.
 
-Mathematical equations are rendered as high-quality LaTeX images:
+```bash
+# Copy the sample paper to work/papers/
+cp examples/latex-assistant/sample-paper.tex work/papers/
 
-1. LaTeX string → pdflatex → tightly-cropped PDF
-2. PDF → ghostscript → transparent PNG (300 DPI)
-3. PNG inserted into slide via python-pptx
+# Then tell Claude: "run the double checker"
+```
+
+The sample paper has four deliberate errors for testing.
+See `examples/latex-assistant/CLAUDE.md` for the full protocol.
 
 ## Security Scope
 

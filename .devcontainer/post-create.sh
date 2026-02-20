@@ -6,7 +6,7 @@ latexmk -v | head -n 1
 pdflatex --version | head -n 1
 echo ""
 echo "Installing Python dependencies for PPTX editing..."
-pip3 install --break-system-packages -r setup/pptx/requirements.txt
+pip3 install --break-system-packages -r examples/pptx-editor/requirements.txt
 
 echo "Verifying Python tools..."
 python3 --version
@@ -16,4 +16,4 @@ python3 -c "from PIL import Image; print('Pillow OK')"
 echo ""
 echo "Container setup complete."
 echo "  LaTeX:  make -C setup pdf"
-echo "  PPTX:   make -C setup demo-pptx"
+echo "  PPTX:   make -C examples/pptx-editor demo-pptx"

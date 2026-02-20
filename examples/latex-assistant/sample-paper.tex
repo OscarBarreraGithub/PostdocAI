@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Sample Paper: Test the Double-Checker}
+\author{PocketPostdoc}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+This paper contains several deliberate physics and math errors.
+Run the double-checker to find them.
+
+\section{Special Relativity}
+
+The speed of light in vacuum is $c = 3 \times 10^9 \; \text{m/s}$.
+
+% ERROR: c = 3 x 10^8 m/s, not 10^9
+
+The relativistic energy of a particle with rest mass $m$ and momentum $p$ is:
+\begin{equation}
+    E^2 = (pc)^2 + (mc^2)^2
+\end{equation}
+
+The Lorentz factor is:
+\begin{equation}
+    \gamma = \frac{1}{\sqrt{1 + v^2/c^2}}
+\end{equation}
+
+% ERROR: should be 1 - v^2/c^2, not 1 + v^2/c^2
+
+\section{Electromagnetism}
+
+Maxwell's equations in differential form (SI units) include Gauss's law:
+\begin{equation}
+    \nabla \cdot \mathbf{E} = \frac{\rho}{\epsilon_0}
+\end{equation}
+
+and Faraday's law:
+\begin{equation}
+    \nabla \times \mathbf{E} = \frac{\partial \mathbf{B}}{\partial t}
+\end{equation}
+
+% ERROR: missing negative sign, should be -dB/dt
+
+\section{Quantum Mechanics}
+
+The time-independent Schr\"{o}dinger equation for a particle in a potential $V(x)$ is:
+\begin{equation}
+    -\frac{\hbar^2}{2m} \frac{d^2 \psi}{dx^2} + V(x)\psi = E\psi
+\end{equation}
+
+The de Broglie wavelength is $\lambda = h/p$, where $h$ is Planck's constant.
+
+The energy of a photon is $E = h\nu$.
+
+\section{Calculus Check}
+
+Consider the function $f(x) = x^3 e^x$. Its derivative is:
+\begin{equation}
+    f'(x) = 3x^2 e^x
+\end{equation}
+
+% ERROR: by the product rule, f'(x) = 3x^2 e^x + x^3 e^x = (3x^2 + x^3)e^x
+
+\section{Dimensional Analysis}
+
+The gravitational force between two masses is:
+\begin{equation}
+    F = \frac{G m_1 m_2}{r^2}
+\end{equation}
+
+where $G = 6.674 \times 10^{-11} \; \text{N} \cdot \text{m}^2 / \text{kg}^2$.
+
+\section{Conclusion}
+
+If the double-checker is working correctly, it should find exactly four errors
+in this paper.
+
+\end{document}

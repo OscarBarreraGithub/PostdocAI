@@ -23,14 +23,14 @@
     {
       "label": "PPTX: create demo",
       "type": "shell",
-      "command": "make -C setup demo-pptx",
+      "command": "make -C examples/pptx-editor demo-pptx",
       "group": "build",
       "problemMatcher": []
     },
     {
       "label": "PPTX: render equation",
       "type": "shell",
-      "command": "make -C setup render-equation EQN=\"${input:equation}\" OUT=\"${input:outputPng}\"",
+      "command": "make -C examples/pptx-editor render-equation EQN=\"${input:equation}\" OUT=\"${input:outputPng}\"",
       "problemMatcher": []
     }
   ],
