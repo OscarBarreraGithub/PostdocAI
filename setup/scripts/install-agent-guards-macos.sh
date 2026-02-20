@@ -7,8 +7,8 @@ if [ "$(uname -s)" != "Darwin" ]; then
 fi
 
 zshrc_path="$HOME/.zshrc"
-marker_start="# >>> POSTDOCAI SAFE AGENT GUARD >>>"
-marker_end="# <<< POSTDOCAI SAFE AGENT GUARD <<<"
+marker_start="# >>> POCKETPOSTDOC SAFE AGENT GUARD >>>"
+marker_end="# <<< POCKETPOSTDOC SAFE AGENT GUARD <<<"
 tmp_file="$(mktemp)"
 
 if [ -f "$zshrc_path" ]; then
@@ -22,17 +22,17 @@ else
 fi
 
 cat >> "$tmp_file" <<'EOF'
-# >>> POSTDOCAI SAFE AGENT GUARD >>>
-_gpd_require_devcontainer() {
+# >>> POCKETPOSTDOC SAFE AGENT GUARD >>>
+_pocketpostdoc_require_devcontainer() {
   if [ ! -f "/.dockerenv" ]; then
     echo "ERROR: codex/claude are blocked outside the dev container."
-    echo "Use the desktop launcher: Open PostdocAI Safe.command"
+    echo "Use the desktop launcher: Open PocketPostdoc Safe.command"
     return 1
   fi
 }
 
 codex() {
-  _gpd_require_devcontainer || return 1
+  _pocketpostdoc_require_devcontainer || return 1
   if ! whence -p codex >/dev/null 2>&1; then
     echo "ERROR: codex command not found in this environment."
     return 1
@@ -47,7 +47,7 @@ codex() {
 }
 
 claude() {
-  _gpd_require_devcontainer || return 1
+  _pocketpostdoc_require_devcontainer || return 1
   if ! whence -p claude >/dev/null 2>&1; then
     echo "ERROR: claude command not found in this environment."
     return 1
@@ -64,7 +64,7 @@ claude() {
   done
   command claude --sandbox workspace-write "$@"
 }
-# <<< POSTDOCAI SAFE AGENT GUARD <<<
+# <<< POCKETPOSTDOC SAFE AGENT GUARD <<<
 EOF
 
 mv "$tmp_file" "$zshrc_path"

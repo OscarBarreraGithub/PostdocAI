@@ -6,7 +6,7 @@ Goal: launch from a desktop icon and always enter the same safer containerized w
 ## Repo Layout
 
 ```text
-PostdocAI/
+PocketPostdoc/
   .devcontainer/   # Container definition (kept at repo root)
   .vscode/         # Workspace settings/tasks
   setup/           # Setup scripts and starter LaTeX files
@@ -19,7 +19,7 @@ PostdocAI/
 
 ```bash
 git clone <your-repo-url>
-cd PostdocAI
+cd PocketPostdoc
 ./bootstrap.sh
 ```
 
@@ -31,13 +31,13 @@ It also removes local host installs of Codex/Claude VS Code extensions.
 
 Desktop icon created:
 
-`~/Desktop/Open PostdocAI Safe.command`
+`~/Desktop/Open PocketPostdoc Safe.command`
 
 After first setup, users can just double-click that icon.
 
 ## Daily Use
 
-1. Double-click `Open PostdocAI Safe.command` on Desktop.
+1. Double-click `Open PocketPostdoc Safe.command` on Desktop.
 2. VS Code opens directly in the dev container for this repo.
 3. Create/open your projects inside `work/`.
 
@@ -48,7 +48,7 @@ No manual `Reopen in Container` step is required.
 If you already cloned this repo and want new capabilities:
 
 ```bash
-cd PostdocAI
+cd PocketPostdoc
 git pull --ff-only
 ./bootstrap.sh
 ```
