@@ -34,15 +34,11 @@ If Xcode Command Line Tools are missing, macOS will prompt once; rerun `./bootst
 It also installs zsh command guards so `codex` and `claude` fail outside a dev container.
 It also removes local host installs of Codex/Claude VS Code extensions.
 
-Desktop launchers created:
+Desktop launcher created:
 
-`~/Desktop/Open PocketPostdoc Safe.app` (preferred)
+`~/Desktop/Open PocketPostdoc Safe.app`
 
-`~/Desktop/Open PocketPostdoc Safe.command` (fallback/debug)
-
-App icon source path:
-
-`setup/assets/icons/appicon.png`
+App icon source: `setup/assets/icons/appicon.png`
 
 After first setup, users can just double-click that icon.
 

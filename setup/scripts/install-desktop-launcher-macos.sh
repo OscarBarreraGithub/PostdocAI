@@ -7,7 +7,7 @@ if [ "$(uname -s)" != "Darwin" ]; then
 fi
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-launcher_cmd_path="$HOME/Desktop/Open PocketPostdoc Safe.command"
+launcher_cmd_path="$repo_root/setup/scripts/Open PocketPostdoc Safe.command"
 launcher_app_path="$HOME/Desktop/Open PocketPostdoc Safe.app"
 app_exec_name="Open PocketPostdoc Safe"
 icon_png_path="$repo_root/setup/assets/icons/appicon.png"
@@ -86,6 +86,6 @@ fi
 
 touch "$launcher_app_path"
 
-echo "Desktop launchers created:"
+echo "Desktop launcher created:"
 echo "  $launcher_app_path"
-echo "  $launcher_cmd_path"
+echo "  (script: $launcher_cmd_path)"

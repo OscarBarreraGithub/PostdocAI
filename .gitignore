@@ -18,6 +18,9 @@ __pycache__/
 *.pyo
 *.egg-info/
 
+# Generated launcher (contains machine-specific paths)
+setup/scripts/Open PocketPostdoc Safe.command
+
 # OS files
 .DS_Store
 
