@@ -1,5 +1,10 @@
 # Build artifacts
 build/
+setup/build/
+
+# User workspace (keep folder scaffold only)
+work/*
+!work/.gitkeep
 
 # OS files
 .DS_Store

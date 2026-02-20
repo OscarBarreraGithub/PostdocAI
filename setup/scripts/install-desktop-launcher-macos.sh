@@ -6,13 +6,13 @@ if [ "$(uname -s)" != "Darwin" ]; then
   exit 1
 fi
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 launcher_path="$HOME/Desktop/Open PostdocAI Safe.command"
 
 cat > "$launcher_path" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
-exec "$repo_root/scripts/open-safe-workspace.sh"
+exec "$repo_root/setup/scripts/open-safe-workspace.sh"
 EOF
 
 chmod +x "$launcher_path"

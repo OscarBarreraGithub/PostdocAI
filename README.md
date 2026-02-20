@@ -1,7 +1,19 @@
 # Safe VS Code + LaTeX Starter (macOS)
 
 This repo is for **macOS only**.
-Goal: a user can launch from a desktop icon and always enter the same safer containerized workspace.
+Goal: launch from a desktop icon and always enter the same safer containerized workspace.
+
+## Repo Layout
+
+```text
+PostdocAI/
+  .devcontainer/   # Container definition (kept at repo root)
+  .vscode/         # Workspace settings/tasks
+  setup/           # Setup scripts and starter LaTeX files
+  work/            # Your actual project folders (starts empty)
+```
+
+`work/` is intentionally empty at start (tracked with `.gitkeep` only).
 
 ## First-Time Setup (once per machine)
 
@@ -11,7 +23,8 @@ cd PostdocAI
 ./bootstrap.sh
 ```
 
-`./bootstrap.sh` installs dependencies, creates a desktop launcher icon, and opens this repo directly in the dev container.
+`./bootstrap.sh` delegates to `./setup/bootstrap.sh`.
+It installs dependencies, creates a desktop launcher icon, and opens this repo directly in the dev container.
 If Xcode Command Line Tools are missing, macOS will prompt once; rerun `./bootstrap.sh` after that install completes.
 It also installs zsh command guards so `codex` and `claude` fail outside a dev container.
 It also removes local host installs of Codex/Claude VS Code extensions.
@@ -26,44 +39,58 @@ After first setup, users can just double-click that icon.
 
 1. Double-click `Open PostdocAI Safe.command` on Desktop.
 2. VS Code opens directly in the dev container for this repo.
+3. Create/open your projects inside `work/`.
 
 No manual `Reopen in Container` step is required.
+
+## Updating an Existing Clone
+
+If you already cloned this repo and want new capabilities:
+
+```bash
+cd PostdocAI
+git pull --ff-only
+./bootstrap.sh
+```
+
+Then open with the desktop launcher again. If VS Code prompts that container config changed, choose rebuild/reopen.
+
+Notes:
+
+- `work/` is intentionally ignored by Git (except `work/.gitkeep`), so personal project files there do not block pulls.
+- If you changed tracked setup files (for example under `setup/` or `.devcontainer/`), Git may still ask you to stash/commit before pulling.
 
 ## Safe Agent Workflow
 
 Inside the container terminal, run:
 
 ```bash
-./scripts/run-agent-safe.sh codex
-./scripts/run-agent-safe.sh claude
+./setup/scripts/run-agent-safe.sh codex
+./setup/scripts/run-agent-safe.sh claude
 ```
 
 Security model:
 
 - `cwd` is not a security boundary. Agents can `cd`.
-- Host safety comes from container isolation:
-  - only this repo is bind-mounted from host.
-  - no extra host mounts should be added to `.devcontainer/devcontainer.json`.
-- Wrapper enforcement:
-  - Codex is forced to `--sandbox workspace-write`.
-  - Claude must support `--sandbox workspace-write` or it is refused.
-- Terminal guard:
-  - In zsh shells, `codex` and `claude` are blocked unless running in a dev container.
-- Extension guard:
-  - On each safe launch, host VS Code uninstalls `openai.chatgpt`, `openai.codex`, and `anthropic.claude-code`.
-  - These extensions are configured in `.devcontainer/devcontainer.json` so they install in container context.
+- Host safety comes from container isolation: only this repo is bind-mounted from host.
+- Extra host mounts should not be added to `.devcontainer/devcontainer.json`.
+- Wrapper enforcement: Codex is forced to `--sandbox workspace-write`.
+- Wrapper enforcement: Claude must support `--sandbox workspace-write` or it is refused.
+- Terminal guard: in zsh shells, `codex` and `claude` are blocked unless running in a dev container.
+- Extension guard: on each safe launch, host VS Code uninstalls `openai.chatgpt`, `openai.codex`, and `anthropic.claude-code`.
+- Those agent extensions are configured in `.devcontainer/devcontainer.json` to install in container context.
 
 Sanity check:
 
 ```bash
-./scripts/verify-workspace-sandbox.sh
+./setup/scripts/verify-workspace-sandbox.sh
 ```
 
 ## LaTeX Commands
 
-- Build once: `make pdf`
-- Live rebuild: `make watch`
-- Clean: `make clean`
+- Build once: `make -C setup pdf`
+- Live rebuild: `make -C setup watch`
+- Clean: `make -C setup clean`
 
 ## Security Scope
 

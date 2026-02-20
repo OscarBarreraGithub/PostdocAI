@@ -6,7 +6,7 @@ if [ "$(uname -s)" != "Darwin" ]; then
   exit 1
 fi
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 log() {
   printf "[open-safe-workspace] %s\n" "$*"
@@ -47,7 +47,7 @@ if ! command -v devcontainer >/dev/null 2>&1; then
 fi
 
 log "Enforcing container-only VS Code agent extensions..."
-bash "$repo_root/scripts/enforce-agent-extensions-container-only-macos.sh"
+bash "$repo_root/setup/scripts/enforce-agent-extensions-container-only-macos.sh"
 
 log "Starting Docker Desktop..."
 open -g -a Docker || true

@@ -6,7 +6,7 @@ if [ "$(uname -s)" != "Darwin" ]; then
   exit 1
 fi
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
 log() {
   printf "[setup-macos] %s\n" "$*"
@@ -90,13 +90,13 @@ if ! command -v devcontainer >/dev/null 2>&1; then
 fi
 
 log "Creating desktop launcher icon..."
-bash "$repo_root/scripts/install-desktop-launcher-macos.sh"
+bash "$repo_root/setup/scripts/install-desktop-launcher-macos.sh"
 
 log "Installing shell command guards..."
-bash "$repo_root/scripts/install-agent-guards-macos.sh"
+bash "$repo_root/setup/scripts/install-agent-guards-macos.sh"
 
 log "Enforcing container-only VS Code agent extensions..."
-bash "$repo_root/scripts/enforce-agent-extensions-container-only-macos.sh"
+bash "$repo_root/setup/scripts/enforce-agent-extensions-container-only-macos.sh"
 
 log "Launching safe workspace..."
-bash "$repo_root/scripts/open-safe-workspace.sh"
+bash "$repo_root/setup/scripts/open-safe-workspace.sh"

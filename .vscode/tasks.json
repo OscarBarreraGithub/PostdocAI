@@ -4,20 +4,20 @@
     {
       "label": "LaTeX: build",
       "type": "shell",
-      "command": "make pdf",
+      "command": "make -C setup pdf",
       "group": "build",
       "problemMatcher": []
     },
     {
       "label": "LaTeX: watch",
       "type": "shell",
-      "command": "make watch",
+      "command": "make -C setup watch",
       "problemMatcher": []
     },
     {
       "label": "LaTeX: clean",
       "type": "shell",
-      "command": "make clean",
+      "command": "make -C setup clean",
       "problemMatcher": []
     }
   ]
